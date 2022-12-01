@@ -8,11 +8,13 @@ public class Player : MonoBehaviour {
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
-    //public GameObject deathEffect;
-
+    public GameObject deathEffect;
+    
     void OnCollisionEnter2D(Collision2D collision) {
-        health--;
-        hearts[health].sprite = emptyHeart; 
+        if (collision.collider.GetComponent<Enemy>() != null) {
+            health--;
+            hearts[health].sprite = emptyHeart; 
+        }
 
         if (health <= 0) {
             Die();
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour {
     }
 
     void Die() {
-        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
