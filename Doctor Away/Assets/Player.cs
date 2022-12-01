@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public int health = 5;
@@ -24,5 +25,6 @@ public class Player : MonoBehaviour {
     void Die() {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        SceneManager.LoadScene("GameOver");
     }
 }
